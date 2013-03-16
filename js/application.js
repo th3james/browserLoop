@@ -7,7 +7,7 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['loop'] = _.template("<h1>Loop View</h1>\n<audio data-role=\"first\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio data-role=\"buffer\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>");
+  window.JST['loop'] = _.template("<h1>Loop View</h1>\n<audio id='1' data-role=\"first\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio id='2' data-role=\"buffer\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>");
 
   window.Backbone || (window.Backbone = {});
 
@@ -19,6 +19,8 @@
 
     function LoopView() {
       this.loop = __bind(this.loop, this);
+
+      this.checkReadyToPlay = __bind(this.checkReadyToPlay, this);
 
       this.stop = __bind(this.stop, this);
 
@@ -44,8 +46,11 @@
       this.$el.html(this.template({
         loopUrl: this.loopUrl
       }));
-      this.buffer1 = $("[data-role='first']")[0];
-      return this.buffer2 = $("[data-role='buffer']")[0];
+      this.buffer1 = this.$el.find("[data-role='first']")[0];
+      this.buffer1.addEventListener('loadeddata', this.checkReadyToPlay);
+      this.buffer2 = this.$el.find("[data-role='buffer']")[0];
+      this.buffer2.addEventListener('loadeddata', this.checkReadyToPlay);
+      return this;
     };
 
     LoopView.prototype.play = function() {
@@ -58,17 +63,19 @@
       return this.stopListeningToClock();
     };
 
-    LoopView.prototype.readyToPlay = function() {
+    LoopView.prototype.checkReadyToPlay = function() {
       if (!this.isReadyToPlay && (this.buffer1 != null) && (this.buffer2 != null)) {
-        debugger;
+        console.log("buffer1 readyState " + this.buffer1.readyState);
+        console.log("buffer2 readyState " + this.buffer2.readyState);
         this.isReadyToPlay = this.buffer1.readyState > 1 && this.buffer2.readyState > 1;
+        console.log("set is ready to " + this.isReadyToPlay);
       }
       return this.isReadyToPlay;
     };
 
     LoopView.prototype.loop = function() {
       var startClip, stopClip;
-      if (this.readyToPlay()) {
+      if (this.isReadyToPlay) {
         if (this.first) {
           startClip = this.buffer1;
           stopClip = this.buffer2;

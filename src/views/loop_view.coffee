@@ -17,8 +17,11 @@ class Backbone.Views.LoopView extends Backbone.View
 
   render: =>
     @$el.html(@template(loopUrl: @loopUrl))
-    @buffer1 = $("[data-role='first']")[0]
-    @buffer2 = $("[data-role='buffer']")[0]
+    @buffer1 = this.$el.find("[data-role='first']")[0]
+    @buffer1.addEventListener('loadeddata',@checkReadyToPlay)
+    @buffer2 = this.$el.find("[data-role='buffer']")[0]
+    @buffer2.addEventListener('loadeddata',@checkReadyToPlay)
+    return @
 
   play: =>
     @playing = true
@@ -28,14 +31,16 @@ class Backbone.Views.LoopView extends Backbone.View
     @playing = false
     @stopListeningToClock()
 
-  readyToPlay: ->
+  checkReadyToPlay: =>
     if !@isReadyToPlay and @buffer1? and @buffer2?
-      debugger
+      console.log "buffer1 readyState #{@buffer1.readyState}"
+      console.log "buffer2 readyState #{@buffer2.readyState}"
       @isReadyToPlay = (@buffer1.readyState > 1 and @buffer2.readyState > 1)
+      console.log "set is ready to #{@isReadyToPlay}"
     return @isReadyToPlay
 
   loop: =>
-    if @readyToPlay()
+    if @isReadyToPlay
       if (@first)
         startClip = @buffer1
         stopClip = @buffer2
