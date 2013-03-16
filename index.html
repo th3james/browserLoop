@@ -14,8 +14,12 @@
       // TODO Temporary app init code to go here
       $(document).ready(function(){
         // Add the loops
-        var guitars = new Backbone.Views.LoopView({loopUrl: 'audio/ElectricSea-Guitars.mp3'})
+        var guitars = new Backbone.Views.LoopView({name: 'Guitars', loopUrl: 'audio/ElectricSea-Guitars.mp3'})
         $('body').append(guitars.el);
+        var drums = new Backbone.Views.LoopView({name: 'Drums', loopUrl: 'audio/ElectricSea-Drums.mp3'})
+        $('body').append(drums.el);
+        var keys = new Backbone.Views.LoopView({name: 'Keys', loopUrl: 'audio/ElectricSea-Keys.mp3'})
+        $('body').append(keys.el);
 
         // Start the clock
         theClock = new Clock();

@@ -1,5 +1,6 @@
 [
   "templates/loop",
+  "templates/loop-controls",
   "views/loop_view",
   "clock"
 ]
