@@ -13,8 +13,13 @@
     <script type="text/javascript">
       // TODO Temporary app init code to go here
       $(document).ready(function(){
-        loop1 = new Backbone.Views.LoopView()
-        $('body').append(loop1.el);
+        // Add the loops
+        var guitars = new Backbone.Views.LoopView({loopUrl: 'audio/ElectricSea-Guitars.mp3'})
+        $('body').append(guitars.el);
+
+        // Start the clock
+        theClock = new Clock();
+        theClock.play();
       });
     </script>
   </head>

@@ -1,4 +1,5 @@
 [
   "templates/loop",
-  "views/loop_view"
+  "views/loop_view",
+  "clock"
 ]
