@@ -3,18 +3,26 @@
   <head>
     <title>BackboneDiorama</title>
     <style type="text/css">
+      body {
+        background-color: #F4F5ED;
+      }
       ul {
         list-style-type: none;
         padding-left: 0;
       }
       #tracks > li {
         float:left;
-        border: 1px solid #ccc;
-        padding: 1px;
+        background-color: #E6E6E6;
+        margin: 5px;
+        padding: 5px;
         width: 150px;
+        border-radius: 10px;
       }
       #tracks > li h3 {
-        background-color: #33FF33;
+        background-color: #88CEDE;
+        padding: 3px;
+        border-radius: 3px;
+        font-family: Helvetica;
         margin: 0;
       }
       .loops li {
@@ -27,6 +35,11 @@
         width: 100px;
         height: 50px;
         font-size: 30px;
+        background-color: #F9B57C;
+        border-radius: 5px;
+      }
+      .loops li button.stop {
+        background-color: #E7E5A3;
       }
     </style>
     <script src="js/lib/jquery-1.8.3.min.js"></script>
