@@ -12,17 +12,21 @@
 
     <script src="js/application.js"></script>
     <script type="text/javascript">
-      window.LOOP_OVERLAP_MS = 20;
+      window.LOOP_OVERLAP_MS = 43;
 
       // TODO Temporary app init code to go here
       $(document).ready(function(){
         // Add the loops
-        var guitars = new Backbone.Views.LoopView({name: 'Guitars', loopUrl: 'audio/ElectricSea-Guitars.mp3'})
+        var noise = new Backbone.Views.LoopView({name: 'Looping noise', loopUrl: 'audio/ElectricSea-JamesLoopNoise.mp3'})
+        $('body').append(noise.el);
+        var guitars = new Backbone.Views.LoopView({name: 'James Chords', loopUrl: 'audio/ElectricSea-JamesChordsMain.mp3'})
         $('body').append(guitars.el);
-        var drums = new Backbone.Views.LoopView({name: 'Drums', loopUrl: 'audio/ElectricSea-Drums.mp3'})
+        var drums = new Backbone.Views.LoopView({name: 'Drums', loopUrl: 'audio/ElectricSea-DrumLoop.mp3'})
         $('body').append(drums.el);
-        var keys = new Backbone.Views.LoopView({name: 'Keys', loopUrl: 'audio/ElectricSea-Keys.mp3'})
+        var keys = new Backbone.Views.LoopView({name: 'Basic Keys', loopUrl: 'audio/ElectricSea-BasicKeys.mp3'})
         $('body').append(keys.el);
+        var bass = new Backbone.Views.LoopView({name: 'Bass Guitar', loopUrl: 'audio/ElectricSea-MikeBass.mp3'})
+        $('body').append(bass.el);
 
         // Start the clock
         theClock = new Clock();

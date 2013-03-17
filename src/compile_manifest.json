@@ -1,4 +1,6 @@
 [
+  "templates/track",
+  "views/track_view",
   "templates/loop",
   "templates/loop-controls",
   "views/loop_view",
