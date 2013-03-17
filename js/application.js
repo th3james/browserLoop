@@ -7,7 +7,11 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['loop'] = _.template("<h1>Loop View</h1>\n<audio id='1' data-role=\"first\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio id='2' data-role=\"buffer\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>");
+  window.JST['loop'] = _.template("<h1><%= name %></h1>\n<audio data-role=\"first\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio data-role=\"buffer\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<div class='controls'></div>");
+
+  window.JST || (window.JST = {});
+
+  window.JST['loop-controls'] = _.template("<% if (playing) { %>\n  <button class='stop'>Stop</button>\n<% } else { %>\n  <button class='play'>Play</button\n<% }%>");
 
   window.Backbone || (window.Backbone = {});
 
@@ -32,35 +36,62 @@
 
     LoopView.prototype.template = JST['loop'];
 
+    LoopView.prototype.controlsTemplate = JST['loop-controls'];
+
+    LoopView.prototype.events = {
+      'click .play': 'play',
+      'click .stop': 'stop'
+    };
+
     LoopView.prototype.initialize = function(options) {
       this.loopUrl = options.loopUrl;
+      this.name = options.name;
       this.playing = false;
       this.listening = false;
       this.first = true;
       this.isReadyToPlay = false;
-      this.render();
-      return this.play();
+      this.renderedAudioTags = false;
+      return this.render();
     };
 
     LoopView.prototype.render = function() {
+      if (!this.renderedAudioTags) {
+        this.renderAudioTags();
+      }
+      this.renderControls();
+      return this;
+    };
+
+    LoopView.prototype.renderAudioTags = function() {
       this.$el.html(this.template({
-        loopUrl: this.loopUrl
+        loopUrl: this.loopUrl,
+        name: this.name
       }));
       this.buffer1 = this.$el.find("[data-role='first']")[0];
       this.buffer1.addEventListener('loadeddata', this.checkReadyToPlay);
       this.buffer2 = this.$el.find("[data-role='buffer']")[0];
       this.buffer2.addEventListener('loadeddata', this.checkReadyToPlay);
-      return this;
+      return this.renderedAudioTags = true;
+    };
+
+    LoopView.prototype.renderControls = function() {
+      return this.$el.find('.controls').html(this.controlsTemplate({
+        playing: this.playing
+      }));
     };
 
     LoopView.prototype.play = function() {
       this.playing = true;
-      return this.startListeningToClock();
+      this.startListeningToClock();
+      return this.render();
     };
 
     LoopView.prototype.stop = function() {
       this.playing = false;
-      return this.stopListeningToClock();
+      this.stopListeningToClock();
+      this.buffer1.pause();
+      this.buffer2.pause();
+      return this.render();
     };
 
     LoopView.prototype.checkReadyToPlay = function() {
@@ -83,12 +114,12 @@
           startClip = this.buffer2;
           stopClip = this.buffer1;
         }
-        startClip.currentTime = 120;
+        startClip.currentTime = 110;
         startClip.play();
         setTimeout(function() {
           stopClip.pause();
-          return stopClip.currentTime = 120;
-        }, 500);
+          return stopClip.currentTime = 110;
+        }, window.LOOP_OVERLAP_MS);
         return this.first = !this.first;
       }
     };

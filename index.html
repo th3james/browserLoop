@@ -6,11 +6,14 @@
     <script src="js/lib/json2.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone-min.js"></script>
+    <script src="js/lib/html5slider.js"></script>
 
     <script src="js/lib/diorama.js"></script>
 
     <script src="js/application.js"></script>
     <script type="text/javascript">
+      window.LOOP_OVERLAP_MS = 20;
+
       // TODO Temporary app init code to go here
       $(document).ready(function(){
         // Add the loops
@@ -24,10 +27,20 @@
         // Start the clock
         theClock = new Clock();
         theClock.play();
+
+        $('#loop-overlay').val(window.LOOP_OVERLAP_MS);
+        $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS);
+        $('#loop-overlay').on('change', function(e){
+          window.LOOP_OVERLAP_MS = $(e.target).val();
+          $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS);
+        });
       });
     </script>
   </head>
   <body>
     <h1>Browser Loop!</h1>
+    <p>Audio not looping smoothly? Adjust the overlay to taste.</p>
+    <input id='loop-overlay' type='range' min='0' max='200'/>
+    <span id='loop-overlay-amount'></span>ms
   </body>
 </html>

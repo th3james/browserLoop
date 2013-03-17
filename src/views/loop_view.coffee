@@ -74,7 +74,7 @@ class Backbone.Views.LoopView extends Backbone.View
       setTimeout(->
         stopClip.pause()
         stopClip.currentTime = 110
-      , 20)
+      , window.LOOP_OVERLAP_MS)
       @first = !@first
 
   startListeningToClock: ->
