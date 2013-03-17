@@ -1,4 +1,6 @@
 [
+  "models/loop",
+  "collections/loop_collection",
   "templates/track",
   "views/track_view",
   "templates/loop",

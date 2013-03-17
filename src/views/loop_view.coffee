@@ -4,22 +4,20 @@ window.Backbone.Views ||= {}
 class Backbone.Views.LoopView extends Backbone.View
   template: JST['loop']
   controlsTemplate: JST['loop-controls']
+  tagName: 'li'
 
   events:
     'click .play': 'play'
     'click .stop': 'stop'
 
   initialize: (options) ->
-    @loopUrl = options.loopUrl
-    @name = options.name
+    @model = options.model
 
     @playing = false
     @listening = false
     @first = true
     @isReadyToPlay = false
     @renderedAudioTags = false
-
-    @render()
 
   render: =>
     @renderAudioTags() unless @renderedAudioTags
@@ -28,7 +26,7 @@ class Backbone.Views.LoopView extends Backbone.View
     return @
 
   renderAudioTags: ->
-    @$el.html(@template(loopUrl: @loopUrl, name: @name))
+    @$el.html(@template(@model.toJSON()))
     @buffer1 = this.$el.find("[data-role='first']")[0]
     @buffer1.addEventListener('loadeddata',@checkReadyToPlay)
     @buffer2 = this.$el.find("[data-role='buffer']")[0]

@@ -2,6 +2,14 @@
 <html>
   <head>
     <title>BackboneDiorama</title>
+    <style type="text/css">
+      #tracks li {
+        float:left;
+      }
+      #tracks li .loops li{
+        float:none;
+      }
+    </style>
     <script src="js/lib/jquery-1.8.3.min.js"></script>
     <script src="js/lib/json2.js"></script>
     <script src="js/lib/underscore-min.js"></script>
@@ -17,16 +25,45 @@
       // TODO Temporary app init code to go here
       $(document).ready(function(){
         // Add the loops
-        var noise = new Backbone.Views.LoopView({name: 'Looping noise', loopUrl: 'audio/ElectricSea-JamesLoopNoise.mp3'})
-        $('body').append(noise.el);
-        var guitars = new Backbone.Views.LoopView({name: 'James Chords', loopUrl: 'audio/ElectricSea-JamesChordsMain.mp3'})
-        $('body').append(guitars.el);
-        var drums = new Backbone.Views.LoopView({name: 'Drums', loopUrl: 'audio/ElectricSea-DrumLoop.mp3'})
-        $('body').append(drums.el);
-        var keys = new Backbone.Views.LoopView({name: 'Basic Keys', loopUrl: 'audio/ElectricSea-BasicKeys.mp3'})
-        $('body').append(keys.el);
-        var bass = new Backbone.Views.LoopView({name: 'Bass Guitar', loopUrl: 'audio/ElectricSea-MikeBass.mp3'})
-        $('body').append(bass.el);
+
+        var effectsLoopCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Looping noise', loopUrl: 'audio/ElectricSea-JamesLoopNoise.mp3'}
+        ]);
+        var effects = new Backbone.Views.TrackView({name: 'Effects', collection: effectsLoopCollection});
+        $('#tracks').append(effects.el);
+
+        var jamesGuitarLoopCollection = new Backbone.Collections.LoopCollection([
+          {name: 'James Chords', loopUrl: 'audio/ElectricSea-JamesChordsMain.mp3'}
+        ]);
+        var james = new Backbone.Views.TrackView({name: 'James Guitar', collection: jamesGuitarLoopCollection});
+        $('#tracks').append(james.el);
+
+        var drumsLoopCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Drums', loopUrl: 'audio/ElectricSea-DrumLoop.mp3'}
+        ]);
+        var drums = new Backbone.Views.TrackView({name: 'Drums', collection: drumsLoopCollection});
+        $('#tracks').append(drums.el);
+
+        var keysLoopCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Basic Keys', loopUrl: 'audio/ElectricSea-BasicKeys.mp3'},
+          {name: 'Outro Keys', loopUrl: 'audio/ElectricSea-KeysOutro.mp3'}
+        ]);
+        var keys = new Backbone.Views.TrackView({name: 'Keyboard', collection: keysLoopCollection});
+        $('#tracks').append(keys.el);
+
+        var bassLoopCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Mike Bass', loopUrl: 'audio/ElectricSea-MikeBass.mp3'},
+          {name: 'Bass Fattened', loopUrl: 'audio/ElectricSea-BassFattened.mp3'}
+        ]);
+        var bass = new Backbone.Views.TrackView({name: 'Bass', collection: bassLoopCollection});
+        $('#tracks').append(bass.el);
+
+        var robGuitarCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Rob Guitar', loopUrl: 'audio/ElectricSea-RobGuitar.mp3'}
+        ]);
+        var rob = new Backbone.Views.TrackView({name: 'Rob Guitar', collection: robGuitarCollection});
+        $('#tracks').append(rob.el);
+
 
         // Start the clock
         theClock = new Clock();
@@ -46,5 +83,7 @@
     <p>Audio not looping smoothly? Adjust the overlay to taste.</p>
     <input id='loop-overlay' type='range' min='0' max='200'/>
     <span id='loop-overlay-amount'></span>ms
+    <ul id='tracks'>
+    </ul>
   </body>
 </html>
