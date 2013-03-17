@@ -1,7 +1,7 @@
 window.JST ||= {}
 
 window.JST['track'] = _.template("""
-  <h1><%= name %></h1>
+  <h3><%= name %></h3>
   <ul class='loops'>
     <%
       var loop, _i, _len;

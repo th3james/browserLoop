@@ -39,7 +39,7 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['track'] = _.template("<h1><%= name %></h1>\n<ul class='loops'>\n  <%\n    var loop, _i, _len;\n\n    for (_i = 0, _len = loops.length; _i < _len; _i++) {\n      loop = loops[_i];\n  %>\n    <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>\n  <% } %>\n</ul>");
+  window.JST['track'] = _.template("<h3><%= name %></h3>\n<ul class='loops'>\n  <%\n    var loop, _i, _len;\n\n    for (_i = 0, _len = loops.length; _i < _len; _i++) {\n      loop = loops[_i];\n  %>\n    <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>\n  <% } %>\n</ul>");
 
   window.Backbone || (window.Backbone = {});
 
@@ -189,11 +189,11 @@
           startClip = this.buffer2;
           stopClip = this.buffer1;
         }
-        startClip.currentTime = 110;
+        startClip.currentTime = 0;
         startClip.play();
         setTimeout(function() {
           stopClip.pause();
-          return stopClip.currentTime = 110;
+          return stopClip.currentTime = 0;
         }, window.LOOP_OVERLAP_MS);
         return this.first = !this.first;
       }
