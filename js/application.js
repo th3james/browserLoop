@@ -15,6 +15,10 @@
       return Loop.__super__.constructor.apply(this, arguments);
     }
 
+    Loop.prototype.defaults = {
+      length: 4
+    };
+
     return Loop;
 
   })(Backbone.Model);
@@ -126,7 +130,6 @@
     LoopView.prototype.initialize = function(options) {
       this.model = options.model;
       this.playing = false;
-      this.listening = false;
       this.first = true;
       this.isReadyToPlay = false;
       return this.renderedAudioTags = false;
@@ -179,34 +182,44 @@
       return this.isReadyToPlay;
     };
 
-    LoopView.prototype.loop = function() {
+    LoopView.prototype.loop = function(tick) {
       var startClip, stopClip;
       if (this.isReadyToPlay) {
-        if (this.first) {
-          startClip = this.buffer1;
-          stopClip = this.buffer2;
-        } else {
-          startClip = this.buffer2;
-          stopClip = this.buffer1;
+        if (this.startedAtTick == null) {
+          this.startedAtTick = tick;
         }
-        startClip.currentTime = 0;
-        startClip.play();
-        setTimeout(function() {
-          stopClip.pause();
-          return stopClip.currentTime = 0;
-        }, window.LOOP_OVERLAP_MS);
-        return this.first = !this.first;
+        if (this.shouldRestartOnTick(tick)) {
+          if (this.first) {
+            startClip = this.buffer1;
+            stopClip = this.buffer2;
+          } else {
+            startClip = this.buffer2;
+            stopClip = this.buffer1;
+          }
+          startClip.currentTime = 0;
+          startClip.play();
+          setTimeout(function() {
+            stopClip.pause();
+            return stopClip.currentTime = 0;
+          }, window.LOOP_OVERLAP_MS);
+          return this.first = !this.first;
+        }
       }
+    };
+
+    LoopView.prototype.shouldRestartOnTick = function(tick) {
+      var ticksPlayed;
+      ticksPlayed = tick - this.startedAtTick;
+      return ticksPlayed % this.model.get('length') === 0;
     };
 
     LoopView.prototype.startListeningToClock = function() {
       Backbone.on('tick', this.loop);
-      return this.listening = true;
+      return this.startedAtTick = void 0;
     };
 
     LoopView.prototype.stopListeningToClock = function() {
-      Backbone.off('tick', this.loop);
-      return this.listening = false;
+      return Backbone.off('tick', this.loop);
     };
 
     LoopView.prototype.onClose = function() {
@@ -223,11 +236,13 @@
 
     function Clock() {
       this.play = __bind(this.play, this);
+      this.ticks = 0;
       this.loopTime = 2286;
     }
 
     Clock.prototype.play = function() {
-      Backbone.trigger('tick');
+      Backbone.trigger('tick', this.ticks);
+      this.ticks = this.ticks + 1;
       return setTimeout(this.play, this.loopTime);
     };
 

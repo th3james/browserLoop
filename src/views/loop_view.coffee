@@ -14,7 +14,6 @@ class Backbone.Views.LoopView extends Backbone.View
     @model = options.model
 
     @playing = false
-    @listening = false
     @first = true
     @isReadyToPlay = false
     @renderedAudioTags = false
@@ -57,31 +56,38 @@ class Backbone.Views.LoopView extends Backbone.View
       console.log "set is ready to #{@isReadyToPlay}"
     return @isReadyToPlay
 
-  loop: =>
+  loop: (tick) =>
     if @isReadyToPlay
-      if (@first)
-        startClip = @buffer1
-        stopClip = @buffer2
-      else
-        startClip = @buffer2
-        stopClip = @buffer1
+      unless @startedAtTick?
+        @startedAtTick = tick
 
-      startClip.currentTime = 0
-      startClip.play()
+      if @shouldRestartOnTick(tick)
+        if (@first)
+          startClip = @buffer1
+          stopClip = @buffer2
+        else
+          startClip = @buffer2
+          stopClip = @buffer1
 
-      setTimeout(->
-        stopClip.pause()
-        stopClip.currentTime = 0
-      , window.LOOP_OVERLAP_MS)
-      @first = !@first
+        startClip.currentTime = 0
+        startClip.play()
+
+        setTimeout(->
+          stopClip.pause()
+          stopClip.currentTime = 0
+        , window.LOOP_OVERLAP_MS)
+        @first = !@first
+
+  shouldRestartOnTick: (tick)->
+    ticksPlayed = tick - @startedAtTick
+    ticksPlayed%@model.get('length') == 0
 
   startListeningToClock: ->
     Backbone.on('tick', @loop)
-    @listening = true
+    @startedAtTick = undefined
   
   stopListeningToClock: ->
     Backbone.off('tick', @loop)
-    @listening = false
 
   onClose: ->
     @stopListeningToClock()

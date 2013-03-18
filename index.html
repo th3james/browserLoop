@@ -59,7 +59,7 @@
         // Add the loops
 
         var effectsLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Looping noise', loopUrl: 'audio/ElectricSea-JamesLoopNoise.mp3'}
+          {name: 'Looping noise', length: 2, loopUrl: 'audio/ElectricSea-JamesLoopNoise.mp3'}
         ]);
         var effects = new Backbone.Views.TrackView({name: 'Effects', collection: effectsLoopCollection});
         $('#tracks').append(effects.el);
