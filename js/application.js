@@ -155,9 +155,13 @@
     };
 
     LoopView.prototype.renderControls = function() {
-      return this.$el.find('.controls').html(this.controlsTemplate({
-        playing: this.playing
-      }));
+      if (this.isReadyToPlay) {
+        return this.$el.find('.controls').html(this.controlsTemplate({
+          playing: this.playing
+        }));
+      } else {
+        return this.$el.find('.controls').html('<p>Loading loop...</p>');
+      }
     };
 
     LoopView.prototype.play = function() {
@@ -183,6 +187,7 @@
         this.isReadyToPlay = this.buffer1.readyState > 1 && this.buffer2.readyState > 1;
         console.log("set is ready to " + this.isReadyToPlay);
       }
+      this.render();
       return this.isReadyToPlay;
     };
 

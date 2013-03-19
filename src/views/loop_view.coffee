@@ -34,7 +34,10 @@ class Backbone.Views.LoopView extends Backbone.View
     @renderedAudioTags = true
 
   renderControls: ->
-    @$el.find('.controls').html(@controlsTemplate(playing: @playing))
+    if @isReadyToPlay
+      @$el.find('.controls').html(@controlsTemplate(playing: @playing))
+    else
+      @$el.find('.controls').html('<p>Loading loop...</p>')
 
   play: =>
     @playing = true
@@ -55,6 +58,7 @@ class Backbone.Views.LoopView extends Backbone.View
     if !@isReadyToPlay and @buffer1? and @buffer2?
       @isReadyToPlay = (@buffer1.readyState > 1 and @buffer2.readyState > 1)
       console.log "set is ready to #{@isReadyToPlay}"
+    @render()
     return @isReadyToPlay
 
   loop: (tick) =>
