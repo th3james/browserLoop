@@ -8,7 +8,7 @@ class Backbone.Views.LoopView extends Backbone.View
 
   events:
     'click .play': 'play'
-    'click .stop': 'stop'
+    'click .stop': 'stopAtNextBeat'
 
   initialize: (options) ->
     @model = options.model
@@ -41,6 +41,9 @@ class Backbone.Views.LoopView extends Backbone.View
     @startListeningToClock()
     @render()
 
+  stopAtNextBeat: =>
+    @playing = false
+
   stop: =>
     @playing = false
     @stopListeningToClock()
@@ -50,14 +53,14 @@ class Backbone.Views.LoopView extends Backbone.View
 
   checkReadyToPlay: =>
     if !@isReadyToPlay and @buffer1? and @buffer2?
-      console.log "buffer1 readyState #{@buffer1.readyState}"
-      console.log "buffer2 readyState #{@buffer2.readyState}"
       @isReadyToPlay = (@buffer1.readyState > 1 and @buffer2.readyState > 1)
       console.log "set is ready to #{@isReadyToPlay}"
     return @isReadyToPlay
 
   loop: (tick) =>
-    if @isReadyToPlay
+    if @playing == false
+      @stop()
+    else if @isReadyToPlay
       unless @startedAtTick?
         @startedAtTick = tick
 

@@ -110,6 +110,8 @@
 
       this.stop = __bind(this.stop, this);
 
+      this.stopAtNextBeat = __bind(this.stopAtNextBeat, this);
+
       this.play = __bind(this.play, this);
 
       this.render = __bind(this.render, this);
@@ -124,7 +126,7 @@
 
     LoopView.prototype.events = {
       'click .play': 'play',
-      'click .stop': 'stop'
+      'click .stop': 'stopAtNextBeat'
     };
 
     LoopView.prototype.initialize = function(options) {
@@ -164,6 +166,10 @@
       return this.render();
     };
 
+    LoopView.prototype.stopAtNextBeat = function() {
+      return this.playing = false;
+    };
+
     LoopView.prototype.stop = function() {
       this.playing = false;
       this.stopListeningToClock();
@@ -174,8 +180,6 @@
 
     LoopView.prototype.checkReadyToPlay = function() {
       if (!this.isReadyToPlay && (this.buffer1 != null) && (this.buffer2 != null)) {
-        console.log("buffer1 readyState " + this.buffer1.readyState);
-        console.log("buffer2 readyState " + this.buffer2.readyState);
         this.isReadyToPlay = this.buffer1.readyState > 1 && this.buffer2.readyState > 1;
         console.log("set is ready to " + this.isReadyToPlay);
       }
@@ -184,7 +188,9 @@
 
     LoopView.prototype.loop = function(tick) {
       var startClip, stopClip;
-      if (this.isReadyToPlay) {
+      if (this.playing === false) {
+        return this.stop();
+      } else if (this.isReadyToPlay) {
         if (this.startedAtTick == null) {
           this.startedAtTick = tick;
         }
