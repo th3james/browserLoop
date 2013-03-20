@@ -66,13 +66,6 @@
         var drums = new Backbone.Views.TrackView({name: 'Drums', collection: drumsLoopCollection});
         $('#tracks').append(drums.el);
 
-        var effectsLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Glass Smash', length: 2, loopUrl: 'audio/XEGlassSmash.theora.ogv'},
-          {name: 'Looping noise', length: 8, loopUrl: 'audio/XE2ndVerseNoise.theora.ogv'}
-        ]);
-        var effects = new Backbone.Views.TrackView({name: 'Effects', collection: effectsLoopCollection});
-        $('#tracks').append(effects.el);
-
         var jamesGuitarLoopCollection = new Backbone.Collections.LoopCollection([
           {name: 'Verse', length: 2, loopUrl: 'audio/XEVrs1James.theora.ogv'},
           {name: 'Verse Variation', length: 2, loopUrl: 'audio/XEVrs2James.theora.ogv'},
@@ -83,9 +76,11 @@
         $('#tracks').append(james.el);
 
         var keysLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Chorus', loopUrl: 'audio/XEChorusKeys.theora.ogv'}
+          {name: 'Chorus', loopUrl: 'audio/XEChorusKeys.theora.ogv'},
+          {name: 'Looping noise', length: 8, loopUrl: 'audio/XE2ndVerseNoise.theora.ogv'},
+          {name: 'Glass Smash', length: 2, loopUrl: 'audio/XEGlassSmash.theora.ogv'},
         ]);
-        var keys = new Backbone.Views.TrackView({name: 'Keyboard', collection: keysLoopCollection});
+        var keys = new Backbone.Views.TrackView({name: 'Synth', collection: keysLoopCollection});
         $('#tracks').append(keys.el);
 
         var bassLoopCollection = new Backbone.Collections.LoopCollection([
@@ -98,6 +93,7 @@
 
         var robGuitarCollection = new Backbone.Collections.LoopCollection([
           {name: 'Verse', length: 8, loopUrl: 'audio/XEVrsRob.theora.ogv'},
+          {name: 'Chorus', length: 8, loopUrl: 'audio/XEChorusRob.theora.ogv'},
           {name: 'Chorus 2', length: 8, loopUrl: 'audio/XEChorusRob2.theora.ogv'},
           {name: 'Chorus 3', length: 8, loopUrl: 'audio/XEChorusRob3.theora.ogv'},
           {name: 'Middle 8', length: 8, loopUrl: 'audio/XERobMidNoise.theora.ogv'}
