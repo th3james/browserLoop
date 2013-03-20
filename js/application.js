@@ -248,7 +248,7 @@
     function Clock() {
       this.play = __bind(this.play, this);
       this.ticks = 0;
-      this.loopTime = 2286;
+      this.loopTime = 888;
     }
 
     Clock.prototype.play = function() {

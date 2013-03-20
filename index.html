@@ -58,44 +58,62 @@
       $(document).ready(function(){
         // Add the loops
 
+        var drumsLoopCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Verse', length: 2, loopUrl: 'audio/XEVerseDrums.theora.ogv'},
+          {name: 'Chorus', loopUrl: 'audio/XEChorusDrums.theora.ogv'},
+          {name: 'Middle 8', loopUrl: 'audio/XEMidDrums.theora.ogv'}
+        ]);
+        var drums = new Backbone.Views.TrackView({name: 'Drums', collection: drumsLoopCollection});
+        $('#tracks').append(drums.el);
+
         var effectsLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Looping noise', length: 2, loopUrl: 'audio/ElectricSea-JamesLoopNoise.mp3'}
+          {name: 'Glass Smash', length: 2, loopUrl: 'audio/XEGlassSmash.theora.ogv'},
+          {name: 'Looping noise', length: 8, loopUrl: 'audio/XE2ndVerseNoise.theora.ogv'}
         ]);
         var effects = new Backbone.Views.TrackView({name: 'Effects', collection: effectsLoopCollection});
         $('#tracks').append(effects.el);
 
         var jamesGuitarLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'James Chords', loopUrl: 'audio/ElectricSea-JamesChordsMain.mp3'}
+          {name: 'Verse', length: 2, loopUrl: 'audio/XEVrs1James.theora.ogv'},
+          {name: 'Verse Variation', length: 2, loopUrl: 'audio/XEVrs2James.theora.ogv'},
+          {name: 'Chorus', length: 2, loopUrl: 'audio/XEChorusJames.theora.ogv'},
+          {name: 'Middle 8', length: 2, loopUrl: 'audio/XEMidJames.theora.ogv'}
         ]);
         var james = new Backbone.Views.TrackView({name: 'James Guitar', collection: jamesGuitarLoopCollection});
         $('#tracks').append(james.el);
 
-        var drumsLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Drums', loopUrl: 'audio/ElectricSea-DrumLoop.mp3'}
-        ]);
-        var drums = new Backbone.Views.TrackView({name: 'Drums', collection: drumsLoopCollection});
-        $('#tracks').append(drums.el);
-
         var keysLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Basic Keys', loopUrl: 'audio/ElectricSea-BasicKeys.mp3'},
-          {name: 'Outro Keys', loopUrl: 'audio/ElectricSea-KeysOutro.mp3'}
+          {name: 'Chorus', loopUrl: 'audio/XEChorusKeys.theora.ogv'}
         ]);
         var keys = new Backbone.Views.TrackView({name: 'Keyboard', collection: keysLoopCollection});
         $('#tracks').append(keys.el);
 
         var bassLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Mike Bass', loopUrl: 'audio/ElectricSea-MikeBass.mp3'},
-          {name: 'Bass Fattened', loopUrl: 'audio/ElectricSea-BassFattened.mp3'}
+          {name: 'Verse', length: 16, loopUrl: 'audio/XEVerseBass.theora.ogv'},
+          {name: 'Chorus', length: 16, loopUrl: 'audio/XEChorusBass.theora.ogv'},
+          {name: 'Middle8', length: 16, loopUrl: 'audio/XEMidBass.theora.ogv'}
         ]);
         var bass = new Backbone.Views.TrackView({name: 'Bass', collection: bassLoopCollection});
         $('#tracks').append(bass.el);
 
         var robGuitarCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Rob Guitar', loopUrl: 'audio/ElectricSea-RobGuitar.mp3'}
+          {name: 'Verse', length: 8, loopUrl: 'audio/XEVrsRob.theora.ogv'},
+          {name: 'Chorus 2', length: 8, loopUrl: 'audio/XEChorusRob2.theora.ogv'},
+          {name: 'Chorus 3', length: 8, loopUrl: 'audio/XEChorusRob3.theora.ogv'},
+          {name: 'Middle 8', length: 8, loopUrl: 'audio/XERobMidNoise.theora.ogv'}
         ]);
         var rob = new Backbone.Views.TrackView({name: 'Rob Guitar', collection: robGuitarCollection});
         $('#tracks').append(rob.el);
 
+        var voxCollection = new Backbone.Collections.LoopCollection([
+          {name: 'Verse 1', length: 16, loopUrl: 'audio/XEVrs1Vox.theora.ogv'},
+          {name: 'Verse 2', length: 16, loopUrl: 'audio/XEVrs2Vox.theora.ogv'},
+          {name: 'Verse 3', length: 16, loopUrl: 'audio/XEVrs3Vox.theora.ogv'},
+          {name: 'Verse 4', length: 16, loopUrl: 'audio/XEVrs4Vox.theora.ogv'},
+          {name: 'Chorus', length: 16, loopUrl: 'audio/XEChorusVox.theora.ogv'}
+        ]);
+        var vox = new Backbone.Views.TrackView({name: 'Vocals', collection: voxCollection});
+        $('#tracks').append(vox.el);
 
         // Start the clock
         theClock = new Clock();

@@ -4,7 +4,7 @@ window.Backbone ||= {}
 class window.Clock
   constructor: ->
     @ticks = 0
-    @loopTime = 2286
+    @loopTime = 888
 
   play: =>
     Backbone.trigger('tick', @ticks)
