@@ -32,10 +32,21 @@
     __extends(LoopCollection, _super);
 
     function LoopCollection() {
+      this.stopLoops = __bind(this.stopLoops, this);
       return LoopCollection.__super__.constructor.apply(this, arguments);
     }
 
     LoopCollection.prototype.model = Backbone.Models.Loop;
+
+    LoopCollection.prototype.initialize = function() {
+      return this.on('requestTrackStop', this.stopLoops);
+    };
+
+    LoopCollection.prototype.stopLoops = function() {
+      return this.each(function(model) {
+        return model.set('playing', false);
+      });
+    };
 
     return LoopCollection;
 
@@ -131,7 +142,7 @@
 
     LoopView.prototype.initialize = function(options) {
       this.model = options.model;
-      this.playing = false;
+      this.model.set('playing', false);
       this.first = true;
       this.isReadyToPlay = false;
       return this.renderedAudioTags = false;
@@ -157,7 +168,7 @@
     LoopView.prototype.renderControls = function() {
       if (this.isReadyToPlay) {
         return this.$el.find('.controls').html(this.controlsTemplate({
-          playing: this.playing
+          playing: this.model.get('playing')
         }));
       } else {
         return this.$el.find('.controls').html('<p>Loading loop...</p>');
@@ -165,17 +176,18 @@
     };
 
     LoopView.prototype.play = function() {
-      this.playing = true;
+      this.model.trigger('requestTrackStop');
+      this.model.set('playing', true);
       this.startListeningToClock();
       return this.render();
     };
 
     LoopView.prototype.stopAtNextBeat = function() {
-      return this.playing = false;
+      return this.model.set('playing', false);
     };
 
     LoopView.prototype.stop = function() {
-      this.playing = false;
+      this.model.set('playing', false);
       this.stopListeningToClock();
       this.buffer1.pause();
       this.buffer2.pause();
@@ -185,7 +197,6 @@
     LoopView.prototype.checkReadyToPlay = function() {
       if (!this.isReadyToPlay && (this.buffer1 != null) && (this.buffer2 != null)) {
         this.isReadyToPlay = this.buffer1.readyState > 1 && this.buffer2.readyState > 1;
-        console.log("set is ready to " + this.isReadyToPlay);
       }
       this.render();
       return this.isReadyToPlay;
@@ -193,7 +204,7 @@
 
     LoopView.prototype.loop = function(tick) {
       var startClip, stopClip;
-      if (this.playing === false) {
+      if (this.model.get('playing') === false) {
         return this.stop();
       } else if (this.isReadyToPlay) {
         if (this.startedAtTick == null) {

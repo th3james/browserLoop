@@ -13,7 +13,7 @@ class Backbone.Views.LoopView extends Backbone.View
   initialize: (options) ->
     @model = options.model
 
-    @playing = false
+    @model.set('playing', false)
     @first = true
     @isReadyToPlay = false
     @renderedAudioTags = false
@@ -35,20 +35,21 @@ class Backbone.Views.LoopView extends Backbone.View
 
   renderControls: ->
     if @isReadyToPlay
-      @$el.find('.controls').html(@controlsTemplate(playing: @playing))
+      @$el.find('.controls').html(@controlsTemplate(playing: @model.get('playing')))
     else
       @$el.find('.controls').html('<p>Loading loop...</p>')
 
   play: =>
-    @playing = true
+    @model.trigger('requestTrackStop')
+    @model.set('playing', true)
     @startListeningToClock()
     @render()
 
   stopAtNextBeat: =>
-    @playing = false
+    @model.set('playing', false)
 
   stop: =>
-    @playing = false
+    @model.set('playing', false)
     @stopListeningToClock()
     @buffer1.pause()
     @buffer2.pause()
@@ -57,12 +58,11 @@ class Backbone.Views.LoopView extends Backbone.View
   checkReadyToPlay: =>
     if !@isReadyToPlay and @buffer1? and @buffer2?
       @isReadyToPlay = (@buffer1.readyState > 1 and @buffer2.readyState > 1)
-      console.log "set is ready to #{@isReadyToPlay}"
     @render()
     return @isReadyToPlay
 
   loop: (tick) =>
-    if @playing == false
+    if @model.get('playing') == false
       @stop()
     else if @isReadyToPlay
       unless @startedAtTick?
