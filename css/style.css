@@ -24,25 +24,27 @@ ul {
   overflow: hidden;
 }
 #tracks {
-  border: 1px solid #eee;
+  float:left;
+  border: solid 2px #85b931;
   border-radius: 5px;
   background-color: #48494D;
 }
 #tracks > li {
-  float:left;
+  float: left;
   margin: 5px;
-  padding: 5px;
   width: 90px;
   border-radius: 10px;
+  border: 1px solid #666;
+  padding-bottom:12px;
 }
 #tracks > li h3 {
   background-color: #3E3D42;
-  border-top: solid 3px #85b931;
-  border-bottom: solid 3px #85b931;
   color: #DDD;
   padding: 3px;
   font-family: Helvetica;
   margin: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .loops li {
   text-align: center;
