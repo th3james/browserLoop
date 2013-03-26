@@ -17,12 +17,12 @@
     <script type="text/javascript">
       window.LOOP_OVERLAP_MS = 43;
 
-      // TODO Temporary app init code to go here
       $(document).ready(function(){
         // Add the loops
 
         var drumsLoopCollection = new Backbone.Collections.LoopCollection([
           {name: 'Verse', length: 2, loopUrl: 'audio/XEVerseDrums.theora.ogv'},
+          {space: true},
           {name: 'Chorus', loopUrl: 'audio/XEChorusDrums.theora.ogv'},
           {name: 'Middle 8', loopUrl: 'audio/XEMidDrums.theora.ogv'}
         ]);

@@ -8,8 +8,14 @@ window.JST['track'] = _.template("""
 
       for (_i = 0, _len = loops.length; _i < _len; _i++) {
         loop = loops[_i];
+        if (loop.get('space')) {
     %>
-      <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>
-    <% } %>
+        <li></li>
+      <% } else { %>
+        <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>
+    <%  
+        }
+      }
+    %>
   </ul>
 """)

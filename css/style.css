@@ -51,6 +51,7 @@ ul {
   border-top-right-radius: 7px;
 }
 .loops li {
+  height: 65px;
   margin-top: 10px;
   text-align: center;
 }

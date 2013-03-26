@@ -16,7 +16,8 @@
     }
 
     Loop.prototype.defaults = {
-      length: 4
+      length: 4,
+      space: false
     };
 
     return Loop;
@@ -54,7 +55,7 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['track'] = _.template("<h3><%= name %></h3>\n<ul class='loops'>\n  <%\n    var loop, _i, _len;\n\n    for (_i = 0, _len = loops.length; _i < _len; _i++) {\n      loop = loops[_i];\n  %>\n    <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>\n  <% } %>\n</ul>");
+  window.JST['track'] = _.template("<h3><%= name %></h3>\n<ul class='loops'>\n  <%\n    var loop, _i, _len;\n\n    for (_i = 0, _len = loops.length; _i < _len; _i++) {\n      loop = loops[_i];\n      if (loop.get('space')) {\n  %>\n      <li></li>\n    <% } else { %>\n      <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>\n  <%  \n      }\n    }\n  %>\n</ul>");
 
   window.Backbone || (window.Backbone = {});
 
