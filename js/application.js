@@ -100,7 +100,7 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['loop'] = _.template("<h4><%= name %></h4>\n<audio data-role=\"first\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio data-role=\"buffer\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<div class='controls'></div>");
+  window.JST['loop'] = _.template("<audio data-role=\"first\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio data-role=\"buffer\" src=\"<%= loopUrl %>\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<div class='controls'></div>\n<h4><%= name %></h4>");
 
   window.JST || (window.JST = {});
 
