@@ -104,7 +104,7 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['loop-controls'] = _.template("<% if (playing) { %>\n  <button class='stop'>Stop</button>\n<% } else { %>\n  <button class='play'>Play</button\n<% }%>");
+  window.JST['loop-controls'] = _.template("<% if (playing) { %>\n  <button class='stop'><img src='img/stop-button.png'/></button>\n<% } else { %>\n  <button class='play'><img src='img/play-button.png'/></button>\n<% }%>");
 
   window.Backbone || (window.Backbone = {});
 

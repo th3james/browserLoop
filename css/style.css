@@ -1,0 +1,73 @@
+body {
+  background-color: #000;
+  color: #999999;
+}
+h1 {
+  font-size: 60px;
+  color: #FFF;
+  font-family: 'Julius Sans One', sans-serif;
+}
+h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+}
+#header {
+  overflow:hidden;
+}
+#header h1,
+#header h2 {
+  float:left;
+  margin: 0 5px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  overflow: hidden;
+}
+#tracks {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #48494D;
+}
+#tracks > li {
+  float:left;
+  margin: 5px;
+  padding: 5px;
+  width: 90px;
+  border-radius: 10px;
+}
+#tracks > li h3 {
+  background-color: #3E3D42;
+  border-top: solid 3px #85b931;
+  border-bottom: solid 3px #85b931;
+  color: #DDD;
+  padding: 3px;
+  font-family: Helvetica;
+  margin: 0;
+}
+.loops li {
+  text-align: center;
+}
+.loops li h4 {
+  margin: 3px;
+  color: #CCC;
+  font-size: 11px;
+  font-family: Arial;
+}
+.loops li button {
+  width: 50px;
+  height: 50px;
+  background-color: #F9B57C;
+  border-radius: 5px;
+}
+.loops li button.stop {
+  background-color: #E7E5A3;
+}
+.loops li button img{
+  height: 25px;
+  width: 25px;
+}
+
+#overlay-controls {
+  position: absolute;
+  bottom: 0;
+}
