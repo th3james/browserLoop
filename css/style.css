@@ -9,6 +9,7 @@ h1 {
 }
 h2 {
   font-family: 'Merriweather Sans', sans-serif;
+  font-weight: normal;
 }
 #header {
   overflow:hidden;
