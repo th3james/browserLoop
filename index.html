@@ -39,6 +39,7 @@
         $('#tracks').append(james.el);
 
         var keysLoopCollection = new Backbone.Collections.LoopCollection([
+          {space: true},
           {name: 'Noise', length: 8, loopUrl: 'audio/XE2ndVerseNoise.theora.ogv'},
           {name: 'Chorus', loopUrl: 'audio/XEChorusKeys.theora.ogv'},
           {name: 'Glass', length: 2, loopUrl: 'audio/XEGlassSmash.theora.ogv'},
@@ -48,6 +49,7 @@
 
         var bassLoopCollection = new Backbone.Collections.LoopCollection([
           {name: 'Verse', length: 16, loopUrl: 'audio/XEVerseBass.theora.ogv'},
+          {space: true},
           {name: 'Chorus', length: 16, loopUrl: 'audio/XEChorusBass.theora.ogv'},
           {name: 'Middle8', length: 2, loopUrl: 'audio/XEMidBass.theora.ogv'}
         ]);
@@ -56,6 +58,7 @@
 
         var robGuitarCollection = new Backbone.Collections.LoopCollection([
           {name: 'Verse', length: 8, loopUrl: 'audio/XEVrsRob.theora.ogv'},
+          {space: true},
           {name: 'Chorus', length: 8, loopUrl: 'audio/XEChorusRob.theora.ogv'},
           {name: 'Chorus 2', length: 8, loopUrl: 'audio/XEChorusRob2.theora.ogv'},
           {name: 'Chorus 3', length: 8, loopUrl: 'audio/XEChorusRob3.theora.ogv'},
@@ -67,9 +70,9 @@
         var voxCollection = new Backbone.Collections.LoopCollection([
           {name: 'Verse 1', length: 16, loopUrl: 'audio/XEVrs1Vox.theora.ogv'},
           {name: 'Verse 2', length: 16, loopUrl: 'audio/XEVrs2Vox.theora.ogv'},
+          {name: 'Chorus', length: 16, loopUrl: 'audio/XEChorusVox.theora.ogv'},
           {name: 'Verse 3', length: 16, loopUrl: 'audio/XEVrs3Vox.theora.ogv'},
-          {name: 'Verse 4', length: 16, loopUrl: 'audio/XEVrs4Vox.theora.ogv'},
-          {name: 'Chorus', length: 16, loopUrl: 'audio/XEChorusVox.theora.ogv'}
+          {name: 'Verse 4', length: 16, loopUrl: 'audio/XEVrs4Vox.theora.ogv'}
         ]);
         var vox = new Backbone.Views.TrackView({name: 'Vocals', collection: voxCollection});
         $('#tracks').append(vox.el);
