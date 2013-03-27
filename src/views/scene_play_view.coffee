@@ -3,6 +3,7 @@ window.Backbone.Views ||= {}
 
 class Backbone.Views.ScenePlayView extends Backbone.View
   template: JST['scene_play']
+  tagName: 'li'
 
   events:
     'click .play': 'playScene'

@@ -1,4 +1,5 @@
 window.buildSomeSceneViews = (amount) ->
+  amount = amount - 1
   for sceneNumber in [0..amount]
     view = new Backbone.Views.ScenePlayView({sceneNumber: sceneNumber})
     $('#scenes').append(view.el)

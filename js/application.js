@@ -293,6 +293,8 @@
 
     ScenePlayView.prototype.template = JST['scene_play'];
 
+    ScenePlayView.prototype.tagName = 'li';
+
     ScenePlayView.prototype.events = {
       'click .play': 'playScene'
     };
@@ -339,6 +341,7 @@
 
   window.buildSomeSceneViews = function(amount) {
     var sceneNumber, view, _i, _results;
+    amount = amount - 1;
     _results = [];
     for (sceneNumber = _i = 0; 0 <= amount ? _i <= amount : _i >= amount; sceneNumber = 0 <= amount ? ++_i : --_i) {
       view = new Backbone.Views.ScenePlayView({

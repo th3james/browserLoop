@@ -114,6 +114,12 @@ ul {
   width: 25px;
 }
 
+#scenes {
+  margin-top: 64px;
+  float: left;
+  margin-left: 20px;
+}
+
 #overlay-controls {
   position: absolute;
   bottom: 0;
