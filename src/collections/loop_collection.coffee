@@ -6,8 +6,15 @@ class Backbone.Collections.LoopCollection extends Backbone.Collection
   
   initialize: ->
     @on('requestTrackStop', @stopLoops)
+    Backbone.on('playScene', @playLoop)
 
   stopLoops: =>
     @each((model) ->
       model.set('playing', false)
     )
+
+  playLoop: (index) =>
+    @stopLoops()
+    loopToPlay = @models[index]
+    if loopToPlay?
+      loopToPlay.set('playing', true)

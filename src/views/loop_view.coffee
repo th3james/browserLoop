@@ -7,16 +7,17 @@ class Backbone.Views.LoopView extends Backbone.View
   tagName: 'li'
 
   events:
-    'click .play': 'play'
-    'click .stop': 'stopAtNextBeat'
+    'click .play': 'setPlaying'
+    'click .stop': 'setStopped'
 
   initialize: (options) ->
     @model = options.model
 
-    @model.set('playing', false)
     @first = true
     @isReadyToPlay = false
     @renderedAudioTags = false
+
+    @model.on('change:playing', @onPlayStateChange)
 
   render: =>
     @renderAudioTags() unless @renderedAudioTags
@@ -39,14 +40,20 @@ class Backbone.Views.LoopView extends Backbone.View
     else
       @$el.find('.controls').html('<p>Loading loop...</p>')
 
-  play: =>
+  onPlayStateChange: =>
+    if @model.get('playing')
+      @play()
+
+  setPlaying: ->
     @model.trigger('requestTrackStop')
     @model.set('playing', true)
+
+  setStopped: ->
+    @model.set('playing', false)
+
+  play: =>
     @startListeningToClock()
     @render()
-
-  stopAtNextBeat: =>
-    @model.set('playing', false)
 
   stop: =>
     @model.set('playing', false)

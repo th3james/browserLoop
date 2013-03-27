@@ -17,7 +17,8 @@
 
     Loop.prototype.defaults = {
       length: 4,
-      space: false
+      space: false,
+      playing: false
     };
 
     return Loop;
@@ -33,6 +34,8 @@
     __extends(LoopCollection, _super);
 
     function LoopCollection() {
+      this.playLoop = __bind(this.playLoop, this);
+
       this.stopLoops = __bind(this.stopLoops, this);
       return LoopCollection.__super__.constructor.apply(this, arguments);
     }
@@ -40,13 +43,23 @@
     LoopCollection.prototype.model = Backbone.Models.Loop;
 
     LoopCollection.prototype.initialize = function() {
-      return this.on('requestTrackStop', this.stopLoops);
+      this.on('requestTrackStop', this.stopLoops);
+      return Backbone.on('playScene', this.playLoop);
     };
 
     LoopCollection.prototype.stopLoops = function() {
       return this.each(function(model) {
         return model.set('playing', false);
       });
+    };
+
+    LoopCollection.prototype.playLoop = function(index) {
+      var loopToPlay;
+      this.stopLoops();
+      loopToPlay = this.models[index];
+      if (loopToPlay != null) {
+        return loopToPlay.set('playing', true);
+      }
     };
 
     return LoopCollection;
@@ -122,9 +135,9 @@
 
       this.stop = __bind(this.stop, this);
 
-      this.stopAtNextBeat = __bind(this.stopAtNextBeat, this);
-
       this.play = __bind(this.play, this);
+
+      this.onPlayStateChange = __bind(this.onPlayStateChange, this);
 
       this.render = __bind(this.render, this);
       return LoopView.__super__.constructor.apply(this, arguments);
@@ -137,16 +150,16 @@
     LoopView.prototype.tagName = 'li';
 
     LoopView.prototype.events = {
-      'click .play': 'play',
-      'click .stop': 'stopAtNextBeat'
+      'click .play': 'setPlaying',
+      'click .stop': 'setStopped'
     };
 
     LoopView.prototype.initialize = function(options) {
       this.model = options.model;
-      this.model.set('playing', false);
       this.first = true;
       this.isReadyToPlay = false;
-      return this.renderedAudioTags = false;
+      this.renderedAudioTags = false;
+      return this.model.on('change:playing', this.onPlayStateChange);
     };
 
     LoopView.prototype.render = function() {
@@ -176,15 +189,24 @@
       }
     };
 
-    LoopView.prototype.play = function() {
-      this.model.trigger('requestTrackStop');
-      this.model.set('playing', true);
-      this.startListeningToClock();
-      return this.render();
+    LoopView.prototype.onPlayStateChange = function() {
+      if (this.model.get('playing')) {
+        return this.play();
+      }
     };
 
-    LoopView.prototype.stopAtNextBeat = function() {
+    LoopView.prototype.setPlaying = function() {
+      this.model.trigger('requestTrackStop');
+      return this.model.set('playing', true);
+    };
+
+    LoopView.prototype.setStopped = function() {
       return this.model.set('playing', false);
+    };
+
+    LoopView.prototype.play = function() {
+      this.startListeningToClock();
+      return this.render();
     };
 
     LoopView.prototype.stop = function() {
