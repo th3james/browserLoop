@@ -80,10 +80,9 @@
 
         $('#loop-overlay').val(window.LOOP_OVERLAP_MS);
         $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS);
-        $('#loop-overlay').on('change', function(e){
-          window.LOOP_OVERLAP_MS = $(e.target).val();
-          $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS);
-        });
+        $('#loop-overlay').on('change', window.updateOverlay);
+
+        buildSomeSceneViews(5);
       });
     </script>
   </head>
@@ -93,6 +92,8 @@
       <h1>CROSSEYED</h1>
     </div>
     <ul id='tracks'>
+    </ul>
+    <ul id='scenes'>
     </ul>
     <div id='overlay-controls'>
       <p>Audio not looping smoothly? Adjust the overlay to taste.</p>

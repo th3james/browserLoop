@@ -6,5 +6,8 @@
   "templates/loop",
   "templates/loop-controls",
   "views/loop_view",
-  "clock"
+  "templates/scene_play",
+  "views/scene_play_view",
+  "clock",
+  "setup"
 ]
