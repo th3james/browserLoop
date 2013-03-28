@@ -213,7 +213,9 @@
       this.model.set('playing', false);
       this.stopListeningToClock();
       this.buffer1.pause();
+      this.buffer1.load();
       this.buffer2.pause();
+      this.buffer2.load();
       return this.render();
     };
 

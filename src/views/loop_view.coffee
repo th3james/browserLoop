@@ -59,7 +59,9 @@ class Backbone.Views.LoopView extends Backbone.View
     @model.set('playing', false)
     @stopListeningToClock()
     @buffer1.pause()
+    @buffer1.load()
     @buffer2.pause()
+    @buffer2.load()
     @render()
 
   checkReadyToPlay: =>
