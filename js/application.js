@@ -129,13 +129,13 @@
     __extends(LoopView, _super);
 
     function LoopView() {
+      this.stopBuffer2 = __bind(this.stopBuffer2, this);
+
+      this.stopBuffer1 = __bind(this.stopBuffer1, this);
+
       this.loop = __bind(this.loop, this);
 
       this.checkReadyToPlay = __bind(this.checkReadyToPlay, this);
-
-      this.stop = __bind(this.stop, this);
-
-      this.play = __bind(this.play, this);
 
       this.onPlayStateChange = __bind(this.onPlayStateChange, this);
 
@@ -173,8 +173,10 @@
     LoopView.prototype.renderAudioTags = function() {
       this.$el.html(this.template(this.model.toJSON()));
       this.buffer1 = this.$el.find("[data-role='first']")[0];
+      this.buffer1.load();
       this.buffer1.addEventListener('loadeddata', this.checkReadyToPlay);
       this.buffer2 = this.$el.find("[data-role='buffer']")[0];
+      this.buffer2.load();
       this.buffer2.addEventListener('loadeddata', this.checkReadyToPlay);
       return this.renderedAudioTags = true;
     };
@@ -213,9 +215,7 @@
       this.model.set('playing', false);
       this.stopListeningToClock();
       this.buffer1.pause();
-      this.buffer1.load();
       this.buffer2.pause();
-      this.buffer2.load();
       return this.render();
     };
 
@@ -228,7 +228,7 @@
     };
 
     LoopView.prototype.loop = function(tick) {
-      var startClip, stopClip;
+      var stopFunction;
       if (this.model.get('playing') === false) {
         return this.stop();
       } else if (this.isReadyToPlay) {
@@ -237,20 +237,26 @@
         }
         if (this.shouldRestartOnTick(tick)) {
           if (this.first) {
-            startClip = this.buffer1;
-            stopClip = this.buffer2;
+            this.buffer1.play();
+            stopFunction = this.stopBuffer2;
           } else {
-            startClip = this.buffer2;
-            stopClip = this.buffer1;
+            this.buffer2.play();
+            stopFunction = this.stopBuffer1;
           }
-          startClip.play();
-          setTimeout(function() {
-            stopClip.pause();
-            return stopClip.load();
-          }, window.LOOP_OVERLAP_MS);
+          setTimeout(stopFunction, window.LOOP_OVERLAP_MS);
           return this.first = !this.first;
         }
       }
+    };
+
+    LoopView.prototype.stopBuffer1 = function() {
+      this.buffer1.pause();
+      return this.buffer1.load();
+    };
+
+    LoopView.prototype.stopBuffer2 = function() {
+      this.buffer2.pause();
+      return this.buffer2.load();
     };
 
     LoopView.prototype.shouldRestartOnTick = function(tick) {

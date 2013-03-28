@@ -28,8 +28,10 @@ class Backbone.Views.LoopView extends Backbone.View
   renderAudioTags: ->
     @$el.html(@template(@model.toJSON()))
     @buffer1 = this.$el.find("[data-role='first']")[0]
+    @buffer1.load()
     @buffer1.addEventListener('loadeddata',@checkReadyToPlay)
     @buffer2 = this.$el.find("[data-role='buffer']")[0]
+    @buffer2.load()
     @buffer2.addEventListener('loadeddata',@checkReadyToPlay)
 
     @renderedAudioTags = true
@@ -51,17 +53,15 @@ class Backbone.Views.LoopView extends Backbone.View
   setStopped: ->
     @model.set('playing', false)
 
-  play: =>
+  play: ->
     @startListeningToClock()
     @render()
 
-  stop: =>
+  stop: ->
     @model.set('playing', false)
     @stopListeningToClock()
     @buffer1.pause()
-    @buffer1.load()
     @buffer2.pause()
-    @buffer2.load()
     @render()
 
   checkReadyToPlay: =>
@@ -79,19 +79,22 @@ class Backbone.Views.LoopView extends Backbone.View
 
       if @shouldRestartOnTick(tick)
         if (@first)
-          startClip = @buffer1
-          stopClip = @buffer2
+          @buffer1.play()
+          stopFunction = @stopBuffer2
         else
-          startClip = @buffer2
-          stopClip = @buffer1
+          @buffer2.play()
+          stopFunction = @stopBuffer1
 
-        startClip.play()
-
-        setTimeout(->
-          stopClip.pause()
-          stopClip.load()
-        , window.LOOP_OVERLAP_MS)
+        setTimeout(stopFunction, window.LOOP_OVERLAP_MS)
         @first = !@first
+
+  stopBuffer1: =>
+    @buffer1.pause()
+    @buffer1.load()
+
+  stopBuffer2: =>
+    @buffer2.pause()
+    @buffer2.load()
 
   shouldRestartOnTick: (tick)->
     ticksPlayed = tick - @startedAtTick
