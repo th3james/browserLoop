@@ -1,5 +1,3 @@
-window.Backbone ||= {}
-
 # Acts as the timer of the loops
 class window.Clock
   constructor: ->
