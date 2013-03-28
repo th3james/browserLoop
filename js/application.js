@@ -241,11 +241,10 @@
             startClip = this.buffer2;
             stopClip = this.buffer1;
           }
-          startClip.currentTime = 0;
           startClip.play();
           setTimeout(function() {
             stopClip.pause();
-            return stopClip.currentTime = 0;
+            return stopClip.load();
           }, window.LOOP_OVERLAP_MS);
           return this.first = !this.first;
         }
