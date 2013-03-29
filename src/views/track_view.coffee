@@ -5,6 +5,9 @@ class Backbone.Views.TrackView extends Backbone.Diorama.NestingView
   template: JST['track']
   tagName: 'li'
 
+  events:
+    "change .volume": "changeVolume"
+
   initialize: (options) ->
     @loopCollection = options.collection
     @name = options.name
@@ -16,6 +19,10 @@ class Backbone.Views.TrackView extends Backbone.Diorama.NestingView
     @renderSubViews()
 
     return @
+
+  changeVolume: (e) =>
+    @volume = $(e.target).val()
+    @loopCollection.invoke('set', {volume: @volume/100})
 
   onClose: ->
     @closeSubViews()

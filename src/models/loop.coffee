@@ -5,3 +5,4 @@ class window.Backbone.Models.Loop extends Backbone.Model
     length: 4
     space: false
     playing: false
+    volume: 0.5

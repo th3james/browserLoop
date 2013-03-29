@@ -18,6 +18,7 @@ class Backbone.Views.LoopView extends Backbone.View
     @renderedAudioTags = false
 
     @model.on('change:playing', @onPlayStateChange)
+    @model.on('change:volume', @setVolumeFromModel)
 
   render: =>
     @renderAudioTags() unless @renderedAudioTags
@@ -34,6 +35,8 @@ class Backbone.Views.LoopView extends Backbone.View
     @buffer2.load()
     @buffer2.addEventListener('loadeddata',@checkReadyToPlay)
 
+    @setVolumeFromModel()
+
     @renderedAudioTags = true
 
   renderControls: ->
@@ -45,6 +48,11 @@ class Backbone.Views.LoopView extends Backbone.View
   onPlayStateChange: =>
     if @model.get('playing')
       @play()
+      
+  setVolumeFromModel: =>
+    volume = @model.get('volume')
+    @buffer1.volume = volume
+    @buffer2.volume = volume
 
   setPlaying: ->
     @model.trigger('requestTrackStop')

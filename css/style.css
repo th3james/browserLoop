@@ -50,6 +50,9 @@ ul {
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
+#tracks > li input {
+  width: 98%;
+}
 .loops li {
   height: 65px;
   margin-top: 10px;
