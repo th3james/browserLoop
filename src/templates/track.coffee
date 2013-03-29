@@ -2,7 +2,11 @@ window.JST ||= {}
 
 window.JST['track'] = _.template("""
   <h3><%= name %></h3>
-  <input class='volume' type='range' min='0' max='100'/>
+  <div class='volume-strip'>
+    <input class='volume' type='range' min='0' max='100'/>
+    <img src='img/sound_low.png'/>
+    <img class='right' src='img/sound_high.png'/>
+  </div>
   <ul class='loops'>
     <%
       var loop, _i, _len;

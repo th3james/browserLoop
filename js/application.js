@@ -68,7 +68,7 @@
 
   window.JST || (window.JST = {});
 
-  window.JST['track'] = _.template("<h3><%= name %></h3>\n<input class='volume' type='range' min='0' max='100'/>\n<ul class='loops'>\n  <%\n    var loop, _i, _len;\n\n    for (_i = 0, _len = loops.length; _i < _len; _i++) {\n      loop = loops[_i];\n      if (loop.get('space')) {\n  %>\n      <li></li>\n    <% } else { %>\n      <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>\n  <%  \n      }\n    }\n  %>\n</ul>");
+  window.JST['track'] = _.template("<h3><%= name %></h3>\n<div class='volume-strip'>\n  <input class='volume' type='range' min='0' max='100'/>\n  <img src='img/sound_low.png'/>\n  <img class='right' src='img/sound_high.png'/>\n</div>\n<ul class='loops'>\n  <%\n    var loop, _i, _len;\n\n    for (_i = 0, _len = loops.length; _i < _len; _i++) {\n      loop = loops[_i];\n      if (loop.get('space')) {\n  %>\n      <li></li>\n    <% } else { %>\n      <%= view.addSubView(new Backbone.Views.LoopView({model: loop})) %>\n  <%  \n      }\n    }\n  %>\n</ul>");
 
   window.Backbone || (window.Backbone = {});
 
