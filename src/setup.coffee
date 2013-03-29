@@ -7,3 +7,6 @@ window.buildSomeSceneViews = (amount) ->
 window.updateOverlay = (e) ->
   window.LOOP_OVERLAP_MS = $(e.target).val()
   $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS)
+
+window.stopAllClips = ->
+  Backbone.trigger('playScene', -1)

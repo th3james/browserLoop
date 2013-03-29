@@ -71,6 +71,9 @@ ul {
   margin-top: 10px;
   text-align: center;
 }
+.loops li#stop-area {
+  margin-bottom: 21px;
+}
 .loops li h4 {
   margin: 3px;
   color: #CCC;
@@ -131,7 +134,7 @@ ul {
 }
 
 #scenes {
-  margin-top: 106px;
+  margin-top: 20px;
   float: left;
   margin-left: 20px;
 }

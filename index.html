@@ -85,6 +85,8 @@
         $('#loop-overlay').on('change', window.updateOverlay);
 
         buildSomeSceneViews(5);
+
+        $('#stop-all').click(stopAllClips);
       });
     </script>
   </head>
@@ -96,6 +98,10 @@
     <ul id='tracks'>
     </ul>
     <ul id='scenes' class='loops'>
+      <li id="stop-area">
+        <button id='stop-all' class='play'><img src='img/stop-button.png'/></button>
+        <h4>Stop all clips</h4>
+      </li>
     </ul>
     <div id='overlay-controls'>
       <p>Audio not looping smoothly? Adjust the overlay to taste.</p>

@@ -379,4 +379,8 @@
     return $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS);
   };
 
+  window.stopAllClips = function() {
+    return Backbone.trigger('playScene', -1);
+  };
+
 }).call(this);
