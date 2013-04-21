@@ -22,6 +22,22 @@
       volume: 0.5
     };
 
+    Loop.prototype.initialize = function(attributes) {
+      if (attributes.fileName != null) {
+        return this.setLoopUrlFromFilename(attributes.fileName);
+      }
+    };
+
+    Loop.prototype.setLoopUrlFromFilename = function(fileName) {
+      if ((new Audio()).canPlayType('audio/ogg')) {
+        console.log("using ogg");
+        return this.set('loopUrl', "audio/ogg/" + fileName + ".theora.ogv");
+      } else {
+        console.log("using mp3");
+        return this.set('loopUrl', "audio/mp3/" + fileName + ".mp3");
+      }
+    };
+
     return Loop;
 
   })(Backbone.Model);
