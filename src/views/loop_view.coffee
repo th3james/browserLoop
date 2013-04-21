@@ -109,11 +109,14 @@ class Backbone.Views.LoopView extends Backbone.View
     ticksPlayed%@model.get('length') == 0
 
   startListeningToClock: ->
-    Backbone.on('tick', @loop)
+    unless @listening
+      Backbone.on('tick', @loop)
+      @listening = true
     @startedAtTick = undefined
   
   stopListeningToClock: ->
     Backbone.off('tick', @loop)
+    @listening = false
 
   onClose: ->
     @stopListeningToClock()

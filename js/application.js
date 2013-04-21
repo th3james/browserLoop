@@ -284,12 +284,16 @@
     };
 
     LoopView.prototype.startListeningToClock = function() {
-      Backbone.on('tick', this.loop);
+      if (!this.listening) {
+        Backbone.on('tick', this.loop);
+        this.listening = true;
+      }
       return this.startedAtTick = void 0;
     };
 
     LoopView.prototype.stopListeningToClock = function() {
-      return Backbone.off('tick', this.loop);
+      Backbone.off('tick', this.loop);
+      return this.listening = false;
     };
 
     LoopView.prototype.onClose = function() {
