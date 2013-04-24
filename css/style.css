@@ -1,6 +1,14 @@
 body {
   background-color: #000;
   color: #999999;
+  margin: auto;
+  width: 740px;
+  font-family: Arial;
+}
+a {
+  color: #ff7d1b;
+  font-weight: bold;
+  text-decoration: none;
 }
 h1 {
   font-size: 60px;
@@ -24,12 +32,14 @@ ul {
   padding-left: 0;
   overflow: hidden;
 }
-#tracks {
-  float:left;
+.green-border-box {
   border: solid 2px #85b931;
   border-radius: 8px;
   background-color: #48494D;
   padding: 10px;
+}
+#tracks {
+  float:left;
 }
 #tracks > li {
   float: left;
@@ -142,4 +152,33 @@ ul {
 #overlay-controls {
   position: absolute;
   bottom: 0;
+}
+
+#messages {
+  display:none;
+}
+#disabler {
+  position:absolute;
+  left:0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: #666;
+  opacity: 0.6;
+}
+#mobile-device-warning {
+  color: #DDD;
+  width: 400px;
+  height: 215px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 15px;
+  z-index:1000;
+}
+#mobile-device-warning h2 {
+  margin: 0;
 }

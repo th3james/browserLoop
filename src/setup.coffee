@@ -10,3 +10,13 @@ window.updateOverlay = (e) ->
 
 window.stopAllClips = ->
   Backbone.trigger('playScene', -1)
+
+window.isMobileBrowser = ->
+  navigator.userAgent.match(/Android/i) or
+  navigator.userAgent.match(/webOS/i) or
+  navigator.userAgent.match(/iPhone/i) or
+  navigator.userAgent.match(/iPad/i) or
+  navigator.userAgent.match(/iPod/i) or
+  navigator.userAgent.match(/BlackBerry/i) or
+  navigator.userAgent.match(/Windows Phone/i)
+

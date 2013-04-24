@@ -87,6 +87,10 @@
         buildSomeSceneViews(5);
 
         $('#stop-all').click(stopAllClips);
+
+        if (isMobileBrowser()) {
+          $('#messages').slideDown()
+        }
       });
     </script>
     <script type="text/javascript">
@@ -108,7 +112,7 @@
       <h2>BARCODE<br/>CHANNEL</h2>
       <h1>CROSSEYED</h1>
     </div>
-    <ul id='tracks'>
+    <ul id='tracks' class="green-border-box">
     </ul>
     <ul id='scenes' class='loops'>
       <li id="stop-area">
@@ -120,6 +124,16 @@
       <p>Audio not looping smoothly? Adjust the overlay to taste.</p>
       <input id='loop-overlay' type='range' min='0' max='200'/>
       <span id='loop-overlay-amount'></span>ms
+    </div>
+    <div id='messages'>
+      <div id='disabler'>
+      </div>
+      <div id='mobile-device-warning' class="green-border-box">
+        <h2>Hi there, sorry about this..</h2>
+        <p>We've got a really cool toy we wanted to show you where you can remix our new single in your browser. Unfortunately, mobile devices don't currently support the clever bits it needs to work.</p>
+        <p>If you can, give this site a go on a desktop computer (we promise it's worth it!).</p>
+        <p><a href="http://barcodechannel.com">Go to BarcodeChannel.com instead</a></p>
+      </div>
     </div>
   </body>
 </html>
