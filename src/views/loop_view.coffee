@@ -2,8 +2,8 @@ window.Backbone ||= {}
 window.Backbone.Views ||= {}
 
 class Backbone.Views.LoopView extends Backbone.View
-  template: JST['loop']
-  controlsTemplate: JST['loop-controls']
+  template: Handlebars.templates['loop.hbs']
+  controlsTemplate: Handlebars.templates['loop-controls.hbs']
   tagName: 'li'
 
   events:

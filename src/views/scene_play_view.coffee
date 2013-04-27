@@ -2,7 +2,7 @@ window.Backbone ||= {}
 window.Backbone.Views ||= {}
 
 class Backbone.Views.ScenePlayView extends Backbone.View
-  template: JST['scene_play']
+  template: Handlebars.templates['scene_play.hbs']
   tagName: 'li'
 
   events:

@@ -2,7 +2,7 @@ window.Backbone ||= {}
 window.Backbone.Views ||= {}
 
 class Backbone.Views.TrackView extends Backbone.Diorama.NestingView
-  template: JST['track']
+  template: Handlebars.templates['track.hbs']
   tagName: 'li'
 
   events:
