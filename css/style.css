@@ -150,8 +150,8 @@ ul {
 }
 
 #overlay-controls {
-  position: absolute;
-  bottom: 0;
+  background-color: #666;
+  clear: both;
 }
 
 #messages {
@@ -166,7 +166,9 @@ ul {
   background-color: #666;
   opacity: 0.6;
 }
-#mobile-device-warning {
+
+#messages .green-border-box {
+  display: none;
   color: #DDD;
   width: 400px;
   height: 215px;
@@ -179,6 +181,8 @@ ul {
   padding: 15px;
   z-index:1000;
 }
-#mobile-device-warning h2 {
+#messages .green-border-box h2 {
   margin: 0;
+}
+#mobile-device-warning {
 }

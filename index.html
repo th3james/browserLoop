@@ -3,6 +3,7 @@
   <head>
     <title>Browser Loop</title>
     <link charset="utf-8" rel="stylesheet" type="text/css" href="css/style.css" />
+    <link charset="utf-8" rel="stylesheet" type="text/css" href="css/range.css" />
     <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Merriweather+Sans|Oxygen' rel='stylesheet' type='text/css'>
 
     <script src="js/lib/jquery-1.9.1.min.js"></script>
@@ -11,7 +12,7 @@
     <script src="js/lib/backbone-min.js"></script>
     <script src="js/lib/handlebars.js"></script>
 
-    <script src="js/lib/html5slider.js"></script>
+    <script src="js/lib/fd-slider.min.js"></script>
 
     <script src="js/lib/diorama.js"></script>
 
@@ -90,9 +91,20 @@
 
         $('#stop-all').click(stopAllClips);
 
+        var isIE = /*@cc_on!@*/false;
+
         if (isMobileBrowser()) {
-          $('#messages').slideDown()
+          $('#messages').slideDown();
+          $('#mobile-device-warning').slideDown();
+        } else if (isIE) {
+          $('#messages').slideDown();
+          $('#ie-warning').slideDown();
+          $('#ie-let-me-try').click(function() {
+            $('#messages').slideUp();
+          });
         }
+
+        fdSlider.onDomReady()
       });
     </script>
 
@@ -134,6 +146,13 @@
         <h2>Hi there, sorry about this..</h2>
         <p>We've got a really cool toy we wanted to show you where you can remix our new single in your browser. Unfortunately, mobile devices don't currently support the clever bits it needs to work.</p>
         <p>If you can, give this site a go on a desktop computer (we promise it's worth it!).</p>
+        <p><a href="http://barcodechannel.com">Go to BarcodeChannel.com instead</a></p>
+      </div>
+      <div id='ie-warning' class="green-border-box">
+        <h2>Hi there, Internet Explorer user</h2>
+        <p>Unfortunately, your web browser doesn't really support the technology needed for this site to work properly. Expect odd behavior.</p>
+        <p>For the web experience, try this site in Google Chrome, Safari, or Firefox (we promise it's worth it!).</p>
+        <p><a id='ie-let-me-try' href="#">Understood, I want to try it in IE anyway</a></p>
         <p><a href="http://barcodechannel.com">Go to BarcodeChannel.com instead</a></p>
       </div>
     </div>
