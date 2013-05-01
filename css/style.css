@@ -1,9 +1,9 @@
 body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   background-color: #000;
   color: #999999;
   margin: auto;
   width: 740px;
-  font-family: Arial;
 }
 a {
   color: #ff7d1b;
@@ -144,14 +144,29 @@ ul {
 }
 
 #scenes {
-  margin-top: 20px;
+  margin-top: 27px;
   float: left;
   margin-left: 20px;
 }
 
 #overlay-controls {
   background-color: #666;
+  color: #DDD;
   clear: both;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+#overlay-controls p {
+  margin: 0;
+  float: left; 
+}
+#overlay-controls #overlay-slider {
+  float:right;
+  width: 250px;
+  height: 20px;
+}
+#overlay-controls div {
+  float:right;
 }
 
 #messages {
@@ -185,4 +200,56 @@ ul {
   margin: 0;
 }
 #mobile-device-warning {
+}
+
+#footer {
+  background-color: #85b931;
+  padding: 10px;
+  color: #3E3D41;
+  overflow: hidden;
+}
+
+#footer a {
+  color: #005580;
+}
+
+#footer h4 {
+  margin: 10px 0;
+  color: #FFF;
+  font-size: 24px;
+  line-height: 36px;
+}
+#the-left {
+  float: left;
+  width: 70%;
+}
+#footer p {
+  padding: 0 1em;
+}
+#footer ul#ext-links {
+  margin: -8px 10px 0;
+  padding: 0 1em;
+}
+#footer ul#ext-links span.logo img {
+  position: relative;
+  height: 24px;
+  width: 24px;
+  top: -1px;
+}
+#footer ul#ext-links a li {
+  font-weight: normal;
+  color: #3E3D41;
+  list-style: none;
+  font-size: 18px;
+  line-height: 22px;
+  overflow: hidden;
+}
+#footer ul#ext-links span {
+  padding: 5px 1px;
+  float: left;
+  height: 22px;
+}
+#footer ul#ext-links span.logo {
+  width: 30px;
+  line-height: 19px;
 }

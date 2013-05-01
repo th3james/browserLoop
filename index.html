@@ -126,6 +126,10 @@
       <h2>BARCODE<br/>CHANNEL</h2>
       <h1>CROSSEYED</h1>
     </div>
+    <p>
+      To celebrate the release of our new single 'Crosseyed', we've built a tool which allows you to remix the track in your browser.
+      Get stuck in below, if you want hear original track, <a href="http://barcodechannel.bandcamp.com">stream or download it on our bandcamp</a>.
+    </p>
     <ul id='tracks' class="green-border-box">
     </ul>
     <ul id='scenes' class='loops'>
@@ -134,10 +138,14 @@
         <h4>Stop all clips</h4>
       </li>
     </ul>
-    <div id='overlay-controls'>
-      <p>Audio not looping smoothly? Adjust the overlay to taste.</p>
-      <input id='loop-overlay' type='range' min='0' max='200'/>
-      <span id='loop-overlay-amount'></span>ms
+    <div id='overlay-controls' class="green-border-box">
+      <p>Audio not looping smoothly? Adjust the overlay:</p>
+      <div>
+        <span id='loop-overlay-amount'></span>ms
+      </div>
+      <div id='overlay-slider'>
+        <input id='loop-overlay' type='range' min='0' max='200'/>
+      </div>
     </div>
     <div id='messages'>
       <div id='disabler'>
@@ -155,6 +163,32 @@
         <p><a id='ie-let-me-try' href="#">Understood, I want to try it in IE anyway</a></p>
         <p><a href="http://barcodechannel.com">Go to BarcodeChannel.com instead</a></p>
       </div>
+    </div>
+    <div id='footer'>
+      <div id="the-left">
+        <div id="about-box">
+          <h4>About Us</h4>
+          <p>Hi there. We are Barcode Channel, a 3-piece from Cambridge fusing straight up post-punk like LCD Soundsystem and Bloc Party with more electronic influences like SBTRKT and Radiohead's Kid A </p>
+          <p>We work by combining angular guitars with a laptop for beats, samples and synths, working strictly DIY and taking on all the production and recording duties ourselves. While not being the easiest path (and having quite a learning curve!), it's key to shaping our sound. Coupled with drawing influences from a wide range of genres (from Rustie to Wu-Tang), we hope to create something a little different.</p>
+        </div>
+        <div id="contact-box">
+          <h4>Contact</h4>
+          <p>Want to get hold of us? <a href="mailto:barcodechannel.com">barcodechannel@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div id="links-box">
+        <h4>Other pages</h4>
+        <ul id="ext-links">
+          <a href="http://barcodechannel.bandcamp.com"><li><span class="logo"><img alt="Bandcamp" src="http://barcodechannel.com/assets/bandcamp.png"></span><span>Bandcamp</span></li></a>
+          <a href="https://soundcloud.com/barcode-channel"><li><span class="logo"><img alt="Soundcloud" src="http://barcodechannel.com/assets/soundcloud.png"></span><span>Soundcloud</span></li></a>
+          <a href="http://open.spotify.com/artist/7FAnCQ048ShWWphmIuBFkz"><li><span class="logo"><img alt="Spotify" src="http://barcodechannel.com/assets/spotify.png"></span><span>Spotify</span></li></a>
+          <a href="https://itunes.apple.com/gb/artist/barcode-channel/id420554385"><li><span class="logo"><img alt="Itunes" src="http://barcodechannel.com/assets/itunes.png"></span><span>iTunes</span></li></a>
+          <a href="http://www.youtube.com/user/BarcodeChannel?feature=watch"><li><span class="logo"><img alt="Youtube" src="http://barcodechannel.com/assets/youtube.png"></span><span>YouTube</span></li></a>
+          <a href="http://www.facebook.com/pages/Barcode-Channel/126967277330061"><li><span class="logo"><img alt="Facebook" src="http://barcodechannel.com/assets/facebook.png"></span><span>Facebook</span></li></a>
+        </ul>
+      </div>
+
     </div>
   </body>
 </html>
