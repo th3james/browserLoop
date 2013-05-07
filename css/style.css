@@ -199,7 +199,8 @@ ul {
 #messages .green-border-box h2 {
   margin: 0;
 }
-#mobile-device-warning {
+#messages #mobile-device-warning {
+  height: 245px;
 }
 
 #footer {
