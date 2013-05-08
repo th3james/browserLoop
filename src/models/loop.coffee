@@ -14,7 +14,7 @@ class window.Backbone.Models.Loop extends Backbone.Model
   setLoopUrlFromFilename: (fileName)->
     if (new Audio()).canPlayType('audio/ogg')
       console.log "using ogg"
-      @set('loopUrl', "audio/ogg/#{fileName}.theora.ogv")
+      @set('loopUrl', "audio/ogg/#{fileName}.theora.oga")
     else
       console.log "using mp3"
       @set('loopUrl', "audio/mp3/#{fileName}.mp3")
