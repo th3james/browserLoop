@@ -15,7 +15,10 @@ class Backbone.Views.TrackView extends Backbone.Diorama.NestingView
 
   render: =>
     @closeSubViews()
-    @$el.html(@template(view: @, name: @name, loops: @loopCollection.models))
+    Handlebars.registerHelper 'debugger', (a,b,c)->
+      debugger
+
+    @$el.html(@template(thisView: @, name: @name, loops: @loopCollection.models))
     @renderSubViews()
 
     return @

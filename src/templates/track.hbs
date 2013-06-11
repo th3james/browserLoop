@@ -9,7 +9,7 @@
     {{#if attributes.space}}
       <li></li>
     {{else}}
-      {{subView "LoopView" model=this }}
+      {{addSubViewTo ../../thisView "LoopView" model=this }}
     {{/if}}
   {{/each}}
 </ul>
