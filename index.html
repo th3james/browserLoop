@@ -26,91 +26,14 @@
     -->
 
     <script type="text/javascript">
-      window.LOOP_OVERLAP_MS = 43;
+      // IE detection hax
+      var isIE = /*@cc_on!@*/false
 
       $(document).ready(function(){
-        // Add the loops
 
-        var drumsLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Verse', length: 2, fileName: 'XEVerseDrums'},
-          {space: true},
-          {name: 'Chorus', fileName: 'XEChorusDrums'},
-          {name: 'Middle 8', fileName: 'XEMidDrums'}
-        ]);
-        var drums = new Backbone.Views.TrackView({name: 'Drums', collection: drumsLoopCollection});
-        $('#tracks').append(drums.el);
+        new Backbone.Controllers.MainController()
 
-        var jamesGuitarLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Verse', length: 2, fileName: 'XEVrs1James'},
-          {name: 'Verse 2', length: 2, fileName: 'XEVrs2James'},
-          {name: 'Chorus', length: 2, fileName: 'XEChorusJames'},
-          {name: 'Middle 8', length: 2, fileName: 'XEMidJames'}
-        ]);
-        var james = new Backbone.Views.TrackView({name: 'Guitar 1', collection: jamesGuitarLoopCollection});
-        $('#tracks').append(james.el);
-
-        var keysLoopCollection = new Backbone.Collections.LoopCollection([
-          {space: true},
-          {name: 'Noise', length: 8, fileName: 'XE2ndVerseNoise'},
-          {name: 'Chorus', fileName: 'XEChorusKeys'},
-          {name: 'Glass', length: 2, fileName: 'XEGlassSmash'},
-        ]);
-        var keys = new Backbone.Views.TrackView({name: 'Synth', collection: keysLoopCollection});
-        $('#tracks').append(keys.el);
-
-        var bassLoopCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Verse', length: 16, fileName: 'XEVerseBass'},
-          {space: true},
-          {name: 'Chorus', length: 16, fileName: 'XEChorusBass'},
-          {name: 'Middle8', length: 2, fileName: 'XEMidBass'}
-        ]);
-        var bass = new Backbone.Views.TrackView({name: 'Bass', collection: bassLoopCollection});
-        $('#tracks').append(bass.el);
-
-        var robGuitarCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Verse', length: 8, fileName: 'XEVrsRob'},
-          {space: true},
-          {name: 'Chorus', length: 8, fileName: 'XEChorusRob'},
-          {name: 'Chorus 2', length: 8, fileName: 'XEChorusRob3'},
-          {name: 'Middle 8', length: 2, fileName: 'XERobMidNoise'}
-        ]);
-        var rob = new Backbone.Views.TrackView({name: 'Guitar 2', collection: robGuitarCollection});
-        $('#tracks').append(rob.el);
-
-        var voxCollection = new Backbone.Collections.LoopCollection([
-          {name: 'Verse 1', length: 16, fileName: 'XEVrs1Vox'},
-          {name: 'Verse 2', length: 16, fileName: 'XEVrs2Vox'},
-          {name: 'Chorus', length: 16, fileName: 'XEChorusVox'},
-          {name: 'Verse 3', length: 16, fileName: 'XEVrs3Vox'},
-          {name: 'Verse 4', length: 16, fileName: 'XEVrs4Vox'}
-        ]);
-        var vox = new Backbone.Views.TrackView({name: 'Vocals', collection: voxCollection});
-        $('#tracks').append(vox.el);
-
-        // Start the clock
-        theClock = new Clock();
-        theClock.play();
-
-        $('#loop-overlay').val(window.LOOP_OVERLAP_MS);
-        $('#loop-overlay-amount').html(window.LOOP_OVERLAP_MS);
-        $('#loop-overlay').on('change', window.updateOverlay);
-
-        buildSomeSceneViews(5);
-
-        $('#stop-all').click(stopAllClips);
-
-        var isIE = /*@cc_on!@*/false;
-
-        if (false) {
-          $('#messages').slideDown();
-          $('#mobile-device-warning').slideDown();
-        } else if (isIE) {
-          $('#messages').slideDown();
-          $('#ie-warning').slideDown();
-          $('#ie-let-me-try').click(function() {
-            $('#messages').slideUp();
-          });
-        }
+        showUnsupportedBrowserMessages()
 
         fdSlider.onDomReady()
       });

@@ -9,5 +9,7 @@
   "templates/scene_play",
   "views/scene_play_view",
   "clock",
-  "setup"
+  "setup",
+  "browser_loop",
+  "controllers/main_controller"
 ]
