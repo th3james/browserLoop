@@ -19,6 +19,7 @@ class Backbone.Views.LoopView extends Backbone.View
 
     @model.on('change:playing', @onPlayStateChange)
     @model.on('change:volume', @setVolumeFromModel)
+    @render()
 
   render: =>
     @renderAudioTags() unless @renderedAudioTags

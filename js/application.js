@@ -1,7 +1,7 @@
-!function(){var n=Handlebars.template,t=Handlebars.templates=Handlebars.templates||{};t["track.hbs"]=n(function(n,t,a,o,e){function s(n,t,o){var e,s,i="";return i+="\n    ",s=a["if"].call(n,(e=n.attributes,null==e||e===!1?e:e.space),{hash:{},inverse:c.programWithDepth(4,l,t,o),fn:c.program(2,r,t),data:t}),(s||0===s)&&(i+=s),i+="\n  "}function r(){return"\n      <li></li>\n    "}function l(n,t,o){var e,s,r="";return r+="\n      ",s={hash:{model:n},data:t},r+=u((e=a.addSubViewTo||n.addSubViewTo,e?e.call(n,o.thisView,"LoopView",s):h.call(n,"addSubViewTo",o.thisView,"LoopView",s)))+"\n    "}this.compilerInfo=[4,">= 1.0.0"],a=this.merge(a,n.helpers),e=e||{};var i,p="",h=a.helperMissing,u=this.escapeExpression,c=this,m="function";return p+="<h3>",(i=a.name)?i=i.call(t,{hash:{},data:e}):(i=t.name,i=typeof i===m?i.apply(t):i),p+=u(i)+"</h3>\n<div class='volume-strip'>\n  <input class='volume' type='range' min='0' max='100'/>\n  <img src='img/sound_low.png'/>\n  <img class='right' src='img/sound_high.png'/>\n</div>\n<ul class='loops'>\n  ",i=a.each.call(t,t.loops,{hash:{},inverse:c.noop,fn:c.programWithDepth(1,s,e,t),data:e}),(i||0===i)&&(p+=i),p+="\n</ul>\n"}),t["loop.hbs"]=n(function(n,t,a,o,e){this.compilerInfo=[4,">= 1.0.0"],a=this.merge(a,n.helpers),e=e||{};var s,r="",l="function",i=this.escapeExpression;return r+='<audio data-role="first" src="',(s=a.loopUrl)?s=s.call(t,{hash:{},data:e}):(s=t.loopUrl,s=typeof s===l?s.apply(t):s),r+=i(s)+'">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio data-role="buffer" src="',(s=a.loopUrl)?s=s.call(t,{hash:{},data:e}):(s=t.loopUrl,s=typeof s===l?s.apply(t):s),r+=i(s)+"\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<div class='controls'></div>\n<h4>",(s=a.name)?s=s.call(t,{hash:{},data:e}):(s=t.name,s=typeof s===l?s.apply(t):s),r+=i(s)+"</h4>\n"}),t["loop-controls.hbs"]=n(function(n,t,a,o,e){function s(){return"\n  <button class='stop'><img src='img/stop-button.png'/></button>\n"}function r(){return"\n  <button class='play'><img src='img/play-button.png'/></button>\n"}this.compilerInfo=[4,">= 1.0.0"],a=this.merge(a,n.helpers),e=e||{};var l,i="",p=this;return l=a["if"].call(t,t.playing,{hash:{},inverse:p.program(3,r,e),fn:p.program(1,s,e),data:e}),(l||0===l)&&(i+=l),i+="\n"}),t["scene_play.hbs"]=n(function(n,t,a,o,e){return this.compilerInfo=[4,">= 1.0.0"],a=this.merge(a,n.helpers),e=e||{},"<button class='play'><img src='img/play-button.png'/></button>\n"})}();
+!function(){var n=Handlebars.template,o=Handlebars.templates=Handlebars.templates||{};o["track.hbs"]=n(function(n,o,e,t,a){function s(n,o,t){var a,s,i="";return i+="\n    ",s=e["if"].call(n,(a=n.attributes,null==a||a===!1?a:a.space),{hash:{},inverse:c.programWithDepth(4,l,o,t),fn:c.program(2,r,o),data:o}),(s||0===s)&&(i+=s),i+="\n  "}function r(){return"\n      <li></li>\n    "}function l(n,o,t){var a,s,r="";return r+="\n      ",s={hash:{model:n},data:o},r+=u((a=e.addSubViewTo||n.addSubViewTo,a?a.call(n,t.thisView,"LoopView","loop-view-{{model.cid}}",s):h.call(n,"addSubViewTo",t.thisView,"LoopView","loop-view-{{model.cid}}",s)))+"\n    "}this.compilerInfo=[4,">= 1.0.0"],e=this.merge(e,n.helpers),a=a||{};var i,p="",h=e.helperMissing,u=this.escapeExpression,c=this,m="function";return p+="<h3>",(i=e.name)?i=i.call(o,{hash:{},data:a}):(i=o.name,i=typeof i===m?i.apply(o):i),p+=u(i)+"</h3>\n<div class='volume-strip'>\n  <input class='volume' type='range' min='0' max='100'/>\n  <img src='img/sound_low.png'/>\n  <img class='right' src='img/sound_high.png'/>\n</div>\n<ul class='loops'>\n  ",i=e.each.call(o,o.loops,{hash:{},inverse:c.noop,fn:c.programWithDepth(1,s,a,o),data:a}),(i||0===i)&&(p+=i),p+="\n</ul>\n"}),o["loop.hbs"]=n(function(n,o,e,t,a){this.compilerInfo=[4,">= 1.0.0"],e=this.merge(e,n.helpers),a=a||{};var s,r="",l="function",i=this.escapeExpression;return r+='<audio data-role="first" src="',(s=e.loopUrl)?s=s.call(o,{hash:{},data:a}):(s=o.loopUrl,s=typeof s===l?s.apply(o):s),r+=i(s)+'">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<audio data-role="buffer" src="',(s=e.loopUrl)?s=s.call(o,{hash:{},data:a}):(s=o.loopUrl,s=typeof s===l?s.apply(o):s),r+=i(s)+"\">\n  <p>Your browser does not support the audio element.</p>\n</audio>\n<div class='controls'></div>\n<h4>",(s=e.name)?s=s.call(o,{hash:{},data:a}):(s=o.name,s=typeof s===l?s.apply(o):s),r+=i(s)+"</h4>\n"}),o["loop-controls.hbs"]=n(function(n,o,e,t,a){function s(){return"\n  <button class='stop'><img src='img/stop-button.png'/></button>\n"}function r(){return"\n  <button class='play'><img src='img/play-button.png'/></button>\n"}this.compilerInfo=[4,">= 1.0.0"],e=this.merge(e,n.helpers),a=a||{};var l,i="",p=this;return l=e["if"].call(o,o.playing,{hash:{},inverse:p.program(3,r,a),fn:p.program(1,s,a),data:a}),(l||0===l)&&(i+=l),i+="\n"}),o["scene_play.hbs"]=n(function(n,o,e,t,a){return this.compilerInfo=[4,">= 1.0.0"],e=this.merge(e,n.helpers),a=a||{},"<button class='play'><img src='img/play-button.png'/></button>\n"})}();
 
 ;
-// Generated by CoffeeScript 1.6.2
+// Generated by CoffeeScript 1.6.3
 (function() {
   var isMobileBrowser, _base, _base1, _base2, _base3, _base4, _base5, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -33,10 +33,8 @@
 
     Loop.prototype.setLoopUrlFromFilename = function(fileName) {
       if ((new Audio()).canPlayType('audio/ogg')) {
-        console.log("using ogg");
         return this.set('loopUrl', "audio/ogg/" + fileName + ".theora.oga");
       } else {
-        console.log("using mp3");
         return this.set('loopUrl', "audio/mp3/" + fileName + ".mp3");
       }
     };
@@ -54,7 +52,8 @@
 
     function LoopCollection() {
       this.playLoop = __bind(this.playLoop, this);
-      this.stopLoops = __bind(this.stopLoops, this);      _ref1 = LoopCollection.__super__.constructor.apply(this, arguments);
+      this.stopLoops = __bind(this.stopLoops, this);
+      _ref1 = LoopCollection.__super__.constructor.apply(this, arguments);
       return _ref1;
     }
 
@@ -73,7 +72,6 @@
 
     LoopCollection.prototype.playLoop = function(index) {
       var loopToPlay;
-
       this.stopLoops();
       loopToPlay = this.models[index];
       if (loopToPlay != null) {
@@ -94,7 +92,8 @@
 
     function TrackView() {
       this.changeVolume = __bind(this.changeVolume, this);
-      this.render = __bind(this.render, this);      _ref2 = TrackView.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);
+      _ref2 = TrackView.__super__.constructor.apply(this, arguments);
       return _ref2;
     }
 
@@ -113,16 +112,12 @@
     };
 
     TrackView.prototype.render = function() {
-      this.closeSubViews();
-      Handlebars.registerHelper('debugger', function(a, b, c) {
-        debugger;
-      });
       this.$el.html(this.template({
         thisView: this,
         name: this.name,
         loops: this.loopCollection.models
       }));
-      this.renderSubViews();
+      this.attachSubViews();
       return this;
     };
 
@@ -155,7 +150,8 @@
       this.checkReadyToPlay = __bind(this.checkReadyToPlay, this);
       this.setVolumeFromModel = __bind(this.setVolumeFromModel, this);
       this.onPlayStateChange = __bind(this.onPlayStateChange, this);
-      this.render = __bind(this.render, this);      _ref3 = LoopView.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);
+      _ref3 = LoopView.__super__.constructor.apply(this, arguments);
       return _ref3;
     }
 
@@ -176,7 +172,8 @@
       this.isReadyToPlay = false;
       this.renderedAudioTags = false;
       this.model.on('change:playing', this.onPlayStateChange);
-      return this.model.on('change:volume', this.setVolumeFromModel);
+      this.model.on('change:volume', this.setVolumeFromModel);
+      return this.render();
     };
 
     LoopView.prototype.render = function() {
@@ -217,7 +214,6 @@
 
     LoopView.prototype.setVolumeFromModel = function() {
       var volume;
-
       volume = this.model.get('volume');
       this.buffer1.volume = volume;
       return this.buffer2.volume = volume;
@@ -255,7 +251,6 @@
 
     LoopView.prototype.loop = function(tick) {
       var stopFunction;
-
       if (this.model.get('playing') === false) {
         return this.stop();
       } else if (this.isReadyToPlay) {
@@ -288,7 +283,6 @@
 
     LoopView.prototype.shouldRestartOnTick = function(tick) {
       var ticksPlayed;
-
       ticksPlayed = tick - this.startedAtTick;
       return ticksPlayed % this.model.get('length') === 0;
     };
@@ -356,7 +350,8 @@
 
   window.Clock = (function() {
     function Clock() {
-      this.play = __bind(this.play, this);      this.ticks = 0;
+      this.play = __bind(this.play, this);
+      this.ticks = 0;
       this.loopTime = 888;
     }
 
@@ -393,7 +388,6 @@
 
   BrowserLoop.buildSomeSceneViews = function(amount) {
     var sceneNumber, view, _i, _results;
-
     amount = amount - 1;
     _results = [];
     for (sceneNumber = _i = 0; 0 <= amount ? _i <= amount : _i >= amount; sceneNumber = 0 <= amount ? ++_i : --_i) {
@@ -416,7 +410,6 @@
 
   BrowserLoop.createTrackViews = function() {
     var bass, bassLoopCollection, drums, drumsLoopCollection, james, jamesGuitarLoopCollection, keys, keysLoopCollection, rob, robGuitarCollection, vox, voxCollection;
-
     drumsLoopCollection = new Backbone.Collections.LoopCollection([
       {
         name: 'Verse',
@@ -576,7 +569,6 @@
 
     MainController.prototype.start = function() {
       var theClock;
-
       theClock = new Clock();
       return theClock.play();
     };
